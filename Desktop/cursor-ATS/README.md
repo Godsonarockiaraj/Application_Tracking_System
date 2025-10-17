@@ -2,6 +2,10 @@
 
 A comprehensive MERN stack application for managing job applications with automated processing for technical roles and manual management for non-technical roles.
 
+[![Live Demo](https://img.shields.io/badge/Live%20Demo-Vercel-blue)](https://your-vercel-app.vercel.app)
+[![API Documentation](https://img.shields.io/badge/API-Postman%20Collection-orange)](./HATS-API.postman_collection.json)
+[![License](https://img.shields.io/badge/License-MIT-green.svg)](./LICENSE)
+
 ## 🚀 Features
 
 ### Role-Based Access Control
@@ -37,19 +41,19 @@ A comprehensive MERN stack application for managing job applications with automa
 - **Recharts** for data visualization
 - **CSS3** with responsive design
 
-## 📦 Installation
+## 📦 Installation & Setup
 
 ### Prerequisites
-- Node.js (v14 or higher)
-- MongoDB (local or cloud)
-- Git
+- **Node.js** (v16 or higher) - [Download here](https://nodejs.org/)
+- **MongoDB** (local or cloud) - [MongoDB Atlas](https://www.mongodb.com/atlas) (recommended)
+- **Git** - [Download here](https://git-scm.com/)
 
-### Setup Instructions
+### Quick Start (Local Development)
 
 1. **Clone the repository**
    ```bash
-   git clone <repository-url>
-   cd cursor-ATS
+   git clone https://github.com/Godsonarockiaraj/Application_Tracking_System.git
+   cd Application_Tracking_System
    ```
 
 2. **Install dependencies**
@@ -60,12 +64,22 @@ A comprehensive MERN stack application for managing job applications with automa
 3. **Environment Setup**
    Create a `.env` file in the root directory:
    ```env
+   # Database
    MONGODB_URI=mongodb://localhost:27017/hats
-   JWT_SECRET=your_jwt_secret_key
+   # For MongoDB Atlas: MONGODB_URI=mongodb+srv://username:password@cluster.mongodb.net/hats
+   
+   # Authentication
+   JWT_SECRET=your_super_secret_jwt_key_here
+   
+   # Server
    PORT=5000
+   NODE_ENV=development
+   
+   # File Upload
+   MAX_FILE_SIZE=5242880
    ```
 
-4. **Seed the database**
+4. **Seed the database with demo data**
    ```bash
    npm run seed
    ```
@@ -75,6 +89,46 @@ A comprehensive MERN stack application for managing job applications with automa
    npm run dev
    ```
 
+6. **Access the application**
+   - **Frontend**: http://localhost:3000
+   - **Backend API**: http://localhost:5000
+
+### Production Deployment
+
+#### Option 1: Vercel (Recommended)
+1. **Fork/Clone** this repository
+2. **Connect to Vercel**:
+   - Go to [vercel.com](https://vercel.com)
+   - Import your GitHub repository
+   - Vercel will auto-detect the configuration
+3. **Set Environment Variables** in Vercel dashboard:
+   - `MONGODB_URI`
+   - `JWT_SECRET`
+   - `NODE_ENV=production`
+4. **Deploy** - Vercel handles the rest!
+
+#### Option 2: Manual Deployment
+```bash
+# Build the frontend
+npm run build
+
+# Start production server
+cd server && npm start
+```
+
+### Database Setup Options
+
+#### Option 1: MongoDB Atlas (Cloud - Recommended)
+1. Create account at [MongoDB Atlas](https://www.mongodb.com/atlas)
+2. Create a new cluster
+3. Get connection string and add to `.env`
+4. Whitelist your IP address
+
+#### Option 2: Local MongoDB
+1. Install MongoDB locally
+2. Start MongoDB service
+3. Use `mongodb://localhost:27017/hats` in `.env`
+
 ## 🌐 Access URLs
 
 - **Frontend**: http://localhost:3000
@@ -82,11 +136,82 @@ A comprehensive MERN stack application for managing job applications with automa
 
 ## 👥 Demo Credentials
 
-| Role | Email | Password |
-|------|-------|----------|
-| Applicant | applicant@demo.com | password123 |
-| Admin | admin@demo.com | password123 |
-| Bot Mimic | bot@demo.com | password123 |
+After seeding the database, you can use these credentials:
+
+| Role | Email | Password | Description |
+|------|-------|----------|-------------|
+| **Applicant** | applicant@demo.com | password123 | Submit applications, track status |
+| **Admin** | admin@demo.com | password123 | Manage applications, create jobs |
+| **Bot Mimic** | bot@demo.com | password123 | Automated processing |
+
+## 📚 API Documentation
+
+### Postman Collection
+Import the included [Postman Collection](./HATS-API.postman_collection.json) to test all API endpoints:
+
+1. **Download** the `HATS-API.postman_collection.json` file
+2. **Open Postman** and click "Import"
+3. **Select** the downloaded file
+4. **Set Environment Variables**:
+   - `base_url`: `http://localhost:5000` (local) or your deployed URL
+   - `token`: JWT token from login response
+
+### API Endpoints Overview
+
+#### Authentication Endpoints
+```
+POST /api/users/register    # User registration
+POST /api/users/login       # User login
+GET  /api/users/me         # Get current user
+```
+
+#### Job Management
+```
+GET    /api/jobs           # Get all jobs
+POST   /api/jobs           # Create job (Admin only)
+PUT    /api/jobs/:id       # Update job (Admin only)
+DELETE /api/jobs/:id       # Delete job (Admin only)
+```
+
+#### Application Management
+```
+GET  /api/applications              # Get applications
+POST /api/applications              # Submit application
+PUT  /api/applications/:id          # Update application status
+GET  /api/applications/:id/activity # Get activity logs
+GET  /api/applications/:id/resume   # Download resume
+```
+
+#### Bot Mimic (Automated Processing)
+```
+POST /api/bot-mimic/process  # Process technical applications
+GET  /api/bot-mimic/stats    # Get processing statistics
+```
+
+#### Dashboard & Analytics
+```
+GET /api/dashboard    # Get dashboard statistics
+GET /api/keywords     # Get/set keywords for jobs
+```
+
+### API Response Format
+```json
+{
+  "success": true,
+  "message": "Operation successful",
+  "data": { ... },
+  "token": "jwt_token_here"  // Only for auth endpoints
+}
+```
+
+### Error Response Format
+```json
+{
+  "success": false,
+  "message": "Error description",
+  "error": "Detailed error information"
+}
+```
 
 ## 📱 Usage Guide
 
