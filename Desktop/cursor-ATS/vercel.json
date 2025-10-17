@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "name": "hats_application_tracking_system",
+  "name": "hats-application-tracking-system",
   "builds": [
     {
       "src": "client/package.json",

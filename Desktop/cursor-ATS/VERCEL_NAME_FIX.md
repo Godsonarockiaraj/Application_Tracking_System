@@ -1,24 +1,34 @@
-# 🔧 Vercel Name Fix - Invalid Characters Error
+# 🔧 Vercel Name Fix - Correct Naming Rules
 
 ## 🚨 Problem
-Error: "The name contains invalid characters. Only letters, digits, and underscores are allowed. Furthermore, the name should not start with a digit."
+Vercel project names have specific requirements that must be followed.
 
 ## ✅ Solution
+
+### Vercel Project Naming Rules (Updated)
+
+1. **Must be lowercase** ✅
+2. **Up to 100 characters long** ✅
+3. **Allowed characters**: letters, digits, '.', '_', '-'
+4. **Cannot contain '---' sequence** ✅
 
 ### Option 1: Change Vercel Project Name (Recommended)
 
 When importing your project to Vercel:
 
 1. **In Vercel Dashboard**:
-   - Project Name: `hats_application_tracking_system` ✅
-   - Or: `HATSApplicationTrackingSystem` ✅
-   - Or: `ApplicationTrackingSystem` ✅
+   - Project Name: `hats-application-tracking-system` ✅
+   - Or: `hats_application_tracking_system` ✅
+   - Or: `application-tracking-system` ✅
+   - Or: `hats-ats` ✅
 
-2. **Avoid these characters**:
-   - ❌ Hyphens: `hats-app` 
-   - ❌ Spaces: `hats app`
-   - ❌ Special chars: `hats@app`
-   - ❌ Starting with numbers: `2025hats`
+2. **Follow these rules**:
+   - ✅ Lowercase only: `hats-app`
+   - ✅ Use hyphens or underscores: `hats_app`
+   - ✅ Max 100 characters
+   - ❌ No triple dashes: `hats---app`
+   - ❌ No uppercase: `HATS-App`
+   - ❌ No spaces: `hats app`
 
 ### Option 2: Rename Your GitHub Repository
 
@@ -42,25 +52,27 @@ If you want to rename your GitHub repository:
 ## 🎯 Valid Project Names Examples
 
 ✅ **Good Names:**
-- `HATSApplicationTrackingSystem`
-- `ApplicationTrackingSystem`
-- `HATS_ATS`
-- `JobTrackingSystem`
-- `MERN_ATS`
-- `HATS_2025`
+- `hats-application-tracking-system`
+- `hats_application_tracking_system`
+- `application-tracking-system`
+- `hats-ats`
+- `job-tracking-system`
+- `mern-ats`
+- `hats2025`
 
 ❌ **Bad Names:**
-- `hats-application-tracking-system` (hyphens)
-- `HATS Application System` (spaces)
+- `HATSApplicationTrackingSystem` (uppercase)
+- `hats application system` (spaces)
 - `hats@application` (special chars)
-- `2025HATS` (starts with number)
+- `hats---application` (triple dashes)
+- `HATS-ATS` (uppercase)
 
 ## 🔄 Quick Fix Steps
 
 1. **Go to Vercel Dashboard**
 2. **Click "New Project"**
 3. **Import your repository**
-4. **Set Project Name**: `HATSApplicationTrackingSystem`
+4. **Set Project Name**: `hats-application-tracking-system`
 5. **Add Environment Variables**:
    ```
    MONGODB_URI=mongodb+srv://hats-user:password@cluster.mongodb.net/hats
@@ -71,7 +83,7 @@ If you want to rename your GitHub repository:
 6. **Click "Deploy"**
 
 ## 📱 Your App Will Be At:
-`https://HATSApplicationTrackingSystem.vercel.app`
+`https://hats-application-tracking-system.vercel.app`
 
 ## ✅ Success!
 Your deployment should work without the name error.
